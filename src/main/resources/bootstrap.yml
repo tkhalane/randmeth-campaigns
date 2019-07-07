@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: randmeth-campaigns
+  cloud:
+    config:
+      uri: http://localhost:8061
