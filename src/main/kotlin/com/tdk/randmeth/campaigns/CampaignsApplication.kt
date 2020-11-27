@@ -3,7 +3,6 @@ package com.tdk.randmeth.campaigns
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 import org.springframework.context.annotation.Bean
-import org.springframework.cloud.netflix.eureka.EnableEurekaClient
 import springfox.documentation.builders.ApiInfoBuilder
 import springfox.documentation.builders.PathSelectors
 import springfox.documentation.builders.RequestHandlerSelectors
@@ -12,7 +11,7 @@ import springfox.documentation.spring.web.plugins.Docket
 import springfox.documentation.swagger2.annotations.EnableSwagger2
 
 @SpringBootApplication
-@EnableEurekaClient
+//@EnableEurekaClient
 @EnableSwagger2
 class CampaignsApplication
 

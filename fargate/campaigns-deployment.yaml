@@ -1,0 +1,51 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: randmeth-campaigns
+  namespace: randmeth
+spec:
+  type: NodePort #  other types: ClusterIP or LoadBalancer
+  selector:
+    app: randmeth-campaigns # routes traffic to pods named randmeth-campaigns
+  ports:
+    - nodePort: 31479 # this field is optional,if not specified a random port is picked.
+      port: 80 # this 'load balancer' accessible on port 80
+      targetPort: 8080 # pod application listening on 8080
+
+# using nodePort service type means that the application is exposed on the port of the
+# of the nodes on which the pod is runing. For AWS, this means the EC2 instance must
+# accept inbound traffic on that port...so security groups for that should done
+---
+# Pods are nonpermanent resources. If you use a Deployment to run your app, it can create and destroy Pods dynamically.
+# Each Pod gets its own IP address, however in a Deployment, the set of Pods running in one moment in time could be different from the set of Pods running that application a moment later.
+#  This leads to a problem: if some set of Pods (call them "backends") provides functionality to other Pods (call them "frontends") inside your cluster, how do the frontends find out and keep track of which IP address to connect to, so that the frontend can use the backend part of the workload?
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: randmeth-campaigns
+  labels:
+    app: randmeth-campaigns
+  namespace: randmeth
+spec:
+  selector:
+    matchLabels:
+      app: randmeth-campaigns
+  replicas: 2
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: randmeth-campaigns
+    spec:
+      containers:
+        - name: randmeth-campaigns
+          image: 123113322222.dkr.ecr.eu-west-1.amazonaws.com/randmeth:eks-demo
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+              protocol: TCP
