@@ -17,15 +17,3 @@ spec:
             backend:
               serviceName: "randmeth-campaigns"
               servicePort: 80
-
-# In Kubernetes, an Ingress is a component that routes the traffic from outside the cluster to your services and Pods inside the cluster.
-# In simple terms, the Ingress works as a reverse proxy or a load balancer: all external traffic is routed to the Ingress and then is routed to the other components.
-# You must have an Ingress controller to satisfy an Ingress. Only creating an Ingress resource has no effect.
-# You may need to deploy an Ingress controller such as ingress-nginx. You can choose from a number of Ingress controllers.
-
-# metadata.annotations.kubernetes.io/ingress.class is used to select the right Ingress controller in the cluster.
-# metadata.annotations.kubernetes.io/alb.ingress.kubernetes.io/scheme can be configured to use internal or public-facing load balancers.
-# The AWS load balancer controller (formerly named AWS ALB Ingress Controller)
-# creates ALBs and the necessary supporting AWS resources whenever a Kubernetes Ingress resource is created
-#on the cluster with the kubernetes.io/ingress.class: alb annotation.
-# The Ingress resource configures the ALB to route HTTP or HTTPS traffic to different pods within the cluster

@@ -13,4 +13,3 @@ subjects:
     name: alb-ingress-controller
     namespace: randmeth
 
-# annotate a service account(Line 11) with said IAM role (Line 7).
