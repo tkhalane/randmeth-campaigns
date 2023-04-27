@@ -23,3 +23,7 @@ COPY --from=build ${DEPENDENCY}/META-INF /app/META-INF
 COPY --from=build ${DEPENDENCY}/BOOT-INF/classes /app
 #ENTRYPOINT ["java","-cp","app:app/lib/*","books.BooksApplication"]
 ENTRYPOINT ["java","-cp","app:app/lib/*","com.tdk.randmeth.campaigns.CampaignsApplicationKt"]
+
+
+# run via docker run -d -p 8080:8080 <image-id>
+# http://localhost:8080/api/v1/campaigns
