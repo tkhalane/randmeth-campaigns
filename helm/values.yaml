@@ -22,8 +22,8 @@ serviceAccount:
   name: ""
 
 service:
-  type: NodePort
-  port: 80
+  type: LoadBalancer
+  port: 8080
 
 ingress:
   enabled: false
