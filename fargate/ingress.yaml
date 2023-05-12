@@ -17,3 +17,37 @@ spec:
             backend:
               serviceName: "randmeth-campaigns"
               servicePort: 80
+    - host: portals.randmeth.com
+      http:
+        paths:
+          - path: /recharges
+            pathType: Prefix
+            backend:
+              service:
+                name: recharges-service
+                port:
+                  number: 80
+          - path: /upgrades
+            pathType: Prefix
+            backend:
+              service:
+                name: upgrades-service
+                port:
+                  number: 80
+    - host: api.randmeth.com
+      http:
+        paths:
+          - path: /api/campaigns
+            pathType: Prefix
+            backend:
+              service:
+                name: campaigns-service
+                port:
+                  number: 80
+          - path: /api/information
+            pathType: Prefix
+            backend:
+              service:
+                name: information-service
+                port:
+                  number: 80         

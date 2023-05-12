@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: randmeth-campaigns
+  labels:
+    app: randmeth-campaigns
+  namespace: randmeth
+spec:
+  selector:
+    matchLabels:
+      app: randmeth-campaigns
+  replicas: 2
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: randmeth-campaigns
+    spec:
+      containers:
+        - name: randmeth-campaigns
+          image: tkhalane/randmeth:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+              protocol: TCP

@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name:  {{ include "helm.fullname" .}}
+  namespace: randmeth
+spec:
+  type:  {{.Values.service.type }}
+  selector:
+    app: randmeth-campaigns
+  ports:
+    - nodePort: 31479
+      port: {{.Values.service.port }}
+      targetPort: 8080
